@@ -1,5 +1,7 @@
 export default defineAppConfig({
   ui: {
+    primary: 'tourid',
+    gray: 'cool',
     icons: ["mdi", "simple-icons"],
     input: {
       base: "mt-1 focus:ring-1",

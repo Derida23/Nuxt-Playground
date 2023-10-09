@@ -1,63 +1,69 @@
 <template>
   <div class="mb-3">
-    <label for="label" class="font-medium">
+    <label :for="name" class="font-medium">
       {{ label }}
       <UInput
-        v-model="data"
+        v-model="value"
         v-bind="$attrs"
         :icon="useIcon"
         :placeholder="placeholder"
-        :color="error ? 'red' : 'white'"
+        :color="errorMessage ? 'red' : 'white'"
       >
         <template v-for="(_, slot) in $slots" #[slot]="scope" :key="slot">
           <slot :name="slot" v-bind="scope" />
         </template>
       </UInput>
     </label>
-    <p v-if="error" class="text-sm text-red-600 !mt-1">{{ error }}</p>
+    <p v-if="errorMessage" class="text-sm text-red-600 !mt-1">
+      {{ errorMessage }}
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useVModel } from "@vueuse/core";
+// import { useVModel } from "@vueuse/core";
+import { useField } from "vee-validate";
+import { toRef } from "vue";
 
 defineOptions({
   inheritAttrs: false,
 });
 
 const props = defineProps({
-  modelValue: {
+  // modelValue: {
+  //   type: String,
+  //   default: undefined,
+  // },
+  name: {
     type: String,
-    default: null,
+    required: true,
   },
   label: {
     type: String,
-    default: null,
+    default: undefined,
   },
   placeholder: {
     type: String,
-    default: null,
+    default: undefined,
   },
   icon: {
     type: String,
-    default: null,
-  },
-  error: {
-    type: String,
-    default: null,
+    default: undefined,
   },
 });
 
-const emit = defineEmits(["update:modelValue"]);
-const data = useVModel(props, "modelValue", emit);
+// const emit = defineEmits(["update:modelValue"]);
+// const data = useVModel(props, "modelValue", emit);
 
 const useIcon = computed(() => {
   if (!props.icon) {
-    return false;
+    return undefined;
   }
 
   return props.icon;
 });
+
+const { value = undefined, errorMessage } = useField(toRef(props, "name"));
 </script>
 
 <style scoped></style>
