@@ -1,5 +1,6 @@
 <template>
   <div class="p-10">
+    ini admin
     <slot />
   </div>
 </template>

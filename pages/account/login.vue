@@ -13,41 +13,47 @@
   </div>
   <div class="section-form">
     <div class="w-96">
-      <form @submit.prevent="onSubmit">
-        <TInput
-          v-model="form.email"
-          name="email"
-          label="Email"
-          icon="i-heroicons-envelope"
-          placeholder="Masukkan emailmu"
-          :autofocus="true"
-        />
+      <!-- <form @submit.prevent="onSubmit"> -->
+      <TInput
+        v-model="form.email"
+        name="email"
+        label="Email"
+        icon="i-heroicons-envelope"
+        placeholder="Masukkan emailmu"
+        :autofocus="true"
+      />
 
-        <TInput
-          v-model="form.password"
-          name="password"
-          label="Kata Sandi"
-          icon="i-heroicons-lock-closed"
-          placeholder="Passwordnya apa?"
-          trailingIcon="i-heroicons-eye"
-          :ui="{ icon: { trailing: { pointer: '' } } }"
-          :type="type"
-        >
-          <template #trailing>
-            <UButton
-              color="white"
-              variant="link"
-              :padded="false"
-              :icon="iconVisibility"
-              @click="onVisibility"
-            />
-          </template>
-        </TInput>
+      <TInput
+        v-model="form.password"
+        name="password"
+        label="Kata Sandi"
+        icon="i-heroicons-lock-closed"
+        placeholder="Passwordnya apa?"
+        trailingIcon="i-heroicons-eye"
+        :ui="{ icon: { trailing: { pointer: '' } } }"
+        :type="type"
+      >
+        <template #trailing>
+          <UButton
+            color="white"
+            variant="link"
+            :padded="false"
+            :icon="iconVisibility"
+            @click="onVisibility"
+          />
+        </template>
+      </TInput>
 
-        <UButton type="submit" variant="solid" block class="mt-8">
-          Mulai Sekarang
-        </UButton>
-      </form>
+      <UButton
+        @click="onSubmit"
+        type="submit"
+        variant="solid"
+        block
+        class="mt-8"
+      >
+        Mulai Sekarang
+      </UButton>
+      <!-- </form> -->
     </div>
   </div>
 </template>
