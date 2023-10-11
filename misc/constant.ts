@@ -1,0 +1,1 @@
+export const prefix: string = 'api/api/v1'

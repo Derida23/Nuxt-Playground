@@ -62,6 +62,7 @@ definePageMeta({
 const form = ref({
   email: "",
   password: "",
+  is_admin: 1,
 });
 
 // Password show and hide
@@ -78,13 +79,14 @@ const iconVisibility = computed(() => {
 });
 
 // Validation schema
-const { handleSubmit, meta } = useForm({
+const { handleSubmit } = useForm({
   validationSchema: authSchema,
 });
 
-const onSubmit = handleSubmit((values) => {
-  console.log({ values });
-  alert("Submit Form");
+// Handle login api
+const { sigin } = useAuth();
+const onSubmit = handleSubmit(async () => {
+  await sigin(form.value);
 });
 </script>
 

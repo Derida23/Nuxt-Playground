@@ -2,8 +2,9 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
+    apiUrl: process.env.NUXT_API_URL,
     public: {
-      siteTitle: 'TourID',
+      siteTitle: "TourID",
     },
   },
   css: ["~/assets/css/main.css"],
@@ -13,6 +14,12 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/google-fonts",
     "@nuxt/ui",
+    [
+      "@pinia/nuxt",
+      {
+        autoImports: ["defineStore", "storeToRefs"],
+      },
+    ],
     [
       "@vee-validate/nuxt",
       {
@@ -34,5 +41,8 @@ export default defineNuxtConfig({
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
     configPath: "tailwind.config",
+  },
+  typescript: {
+    strict: true,
   },
 });
