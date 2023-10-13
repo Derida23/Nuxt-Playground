@@ -1,5 +1,8 @@
+<script lang="ts" setup></script>
+
 <template>
-  <UContainer>
+  <div class="p-10">
+    ini admin
     <slot />
-  </UContainer>
+  </div>
 </template>

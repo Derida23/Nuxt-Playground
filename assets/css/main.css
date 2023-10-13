@@ -1,0 +1,8 @@
+html {
+  @apply font-[Nunito];
+  @apply text-font;
+}
+
+input::selection {
+  background-color: rgba(197, 97, 94, 0.21);
+}

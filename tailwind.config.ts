@@ -2,6 +2,20 @@ import type { Config } from 'tailwindcss'
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 
 const colors = {
+  font: '#16191D',
+  tourid: {
+    50: '#fbf5f5',
+    100: '#f8e8e8',
+    200: '#f3d6d5',
+    300: '#e9b9b8',
+    400: '#da918f',
+    500: '#c5615e',
+    600: '#b4514e',
+    700: '#96423f',
+    800: '#7d3937',
+    900: '#693533',
+    950: '#381817',
+  },
   main: {
     DEFAULT: '#E42E2C',
     50: '#FECDCA',
