@@ -4,7 +4,7 @@ import { formatDate } from '~/utils/format'
 const dateCookieFormat = 'EEE, d MMM yyyy HH:mm:ss OOOO'
 
 export function useAuth() {
-  const sigin = async (payload: any) => {
+  const signin = async (payload: any) => {
     const { data } = await useHttp<any>(`${API_ENDPOINT.AUTH.SIGNIN}`, {
       body: payload,
       method: 'POST',
@@ -22,11 +22,13 @@ export function useAuth() {
 
       token.value = data.value.data.access_token
       refresh_token.value = data.value.data.refresh_token
+      const router = useRouter()
+      router.push('/dashboard')
       return true
     }
 
     return false
   }
 
-  return { sigin }
+  return { signin }
 }

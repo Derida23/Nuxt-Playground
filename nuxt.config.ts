@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   routeRules: { '/': { redirect: '/account/login' } },
   csurf: CSRF_CONFIG,
   security: SECURITY_CONFIG,
+  css: ['~/assets/css/main.css'],
   runtimeConfig: {
     // eslint-disable-next-line node/prefer-global/process
     apiUrl: process.env.NUXT_API_URL,
@@ -14,7 +15,6 @@ export default defineNuxtConfig({
       siteTitle: 'TourID',
     },
   },
-  css: ['~/assets/css/main.css'],
   modules: [
     '@nuxt/ui',
     '@pinia/nuxt',

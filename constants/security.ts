@@ -35,5 +35,5 @@ export const CSRF_CONFIG = <NuxtConfig['csurf']>{
     sameSite: 'lax',
   },
   methodsToProtect: ['POST', 'PUT', 'PATCH', 'GET', 'DELETE'],
-  excludedUrls: [['^/(?!api/v1).*', 'i']],
+  excludedUrls: [['^/(?!api/v1).*', 'i'], '/api/v1/user/me'],
 }

@@ -30,9 +30,10 @@ const { handleSubmit } = useForm({
 })
 
 // Handle login api
-const { sigin } = useAuth()
+const { signin } = useAuth()
+
 const onSubmit = handleSubmit(async () => {
-  await sigin(form.value)
+  await signin(form.value)
 })
 </script>
 
@@ -91,6 +92,7 @@ const onSubmit = handleSubmit(async () => {
       >
         Mulai Sekarang
       </UButton>
+
       <!-- </form> -->
     </div>
   </div>
