@@ -44,7 +44,7 @@ const { value = undefined, errorMessage } = useField(toRef(props, 'name'))
 
 <template>
   <div class="mb-3">
-    <label :for="name" class="font-medium">
+    <label :for="name" class="font-medium text-neutralVariant-300">
       {{ label }}
       <UInput
         v-model="value"
@@ -52,16 +52,22 @@ const { value = undefined, errorMessage } = useField(toRef(props, 'name'))
         :icon="useIcon"
         :placeholder="placeholder"
         :color="errorMessage ? 'red' : 'white'"
+        :ui="{
+          icon: {
+            trailing: { pointer: '' },
+            base: value ? 'opacity-100' : 'opacity-40',
+          },
+        }"
       >
         <template v-for="(_, slot) in $slots" #[slot]="scope" :key="slot">
           <slot :name="slot" v-bind="scope" />
         </template>
       </UInput>
     </label>
-    <p v-if="errorMessage" class="text-sm text-red-600 !mt-1">
+    <p v-if="errorMessage" class="text-sm text-error !mt-1">
       {{ errorMessage }}
     </p>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="postcss"></style>

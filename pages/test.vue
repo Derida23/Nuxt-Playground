@@ -4,4 +4,4 @@
   ini halaman test dashboard
 </template>
 
-<style scoped></style>
+<style scoped lang="postcss"></style>

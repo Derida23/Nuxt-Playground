@@ -1,6 +1,6 @@
 html {
   @apply font-[Nunito];
-  @apply text-font;
+  @apply text-font-950;
 }
 
 input::selection {

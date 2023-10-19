@@ -1,12 +1,14 @@
 <script setup lang="ts">
 const router = useRouter()
+const toast = useToast()
 </script>
 
 <template>
-  <p @click="router.push('/test')">
+  <UButton @click="router.push('/test')">
     TEST ROUTE
-  </p>
+  </UButton>
   ini halaman admin dashboard
+  <UButton label="Show toast" @click="toast.add({ title: 'Hello world!' })" />
 </template>
 
-<style scoped></style>
+<style scoped lang="postcss"></style>

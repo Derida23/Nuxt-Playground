@@ -97,15 +97,14 @@ const onSubmit = handleSubmit(async () => {
           block
           class="mt-8"
           :loading="isLoading"
-        >
-          Mulai Sekarang
-        </UButton>
+          label="Mulai Sekarang"
+        />
       </form>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .section-image {
   @apply flex;
   @apply justify-center;
