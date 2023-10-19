@@ -5,13 +5,13 @@ const dateCookieFormat = 'EEE, d MMM yyyy HH:mm:ss OOOO'
 
 export function useAuth() {
   const signin = async (payload: any) => {
-    const { data } = await useHttp<any>(`${API_ENDPOINT.AUTH.SIGNIN}`, {
+    const { data, error, pending } = await useHttp<any>(`${API_ENDPOINT.AUTH.SIGNIN}`, {
       body: payload,
       method: 'POST',
       watch: false,
     })
 
-    if (data.value.status === 'success') {
+    if (data.value !== null) {
       const response = data.value.data
 
       const expires_token = formatDate(response.access_token_expires_at, dateCookieFormat)
@@ -22,12 +22,9 @@ export function useAuth() {
 
       token.value = data.value.data.access_token
       refresh_token.value = data.value.data.refresh_token
-      const router = useRouter()
-      router.push('/dashboard')
-      return true
     }
 
-    return false
+    return { data, error, pending }
   }
 
   return { signin }

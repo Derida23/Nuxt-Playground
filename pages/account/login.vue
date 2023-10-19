@@ -31,9 +31,17 @@ const { handleSubmit } = useForm({
 
 // Handle login api
 const { signin } = useAuth()
+const isLoading = ref(false)
 
 const onSubmit = handleSubmit(async () => {
-  await signin(form.value)
+  isLoading.value = true
+
+  const { data } = await signin(form.value)
+
+  isLoading.value = false
+
+  if (data.value !== null)
+    window.location.replace('/')
 })
 </script>
 
@@ -52,48 +60,47 @@ const onSubmit = handleSubmit(async () => {
   </div>
   <div class="section-form">
     <div class="w-96">
-      <!-- <form @submit.prevent="onSubmit"> -->
-      <TInput
-        v-model="form.email"
-        name="email"
-        label="Email"
-        icon="i-heroicons-envelope"
-        placeholder="Masukkan emailmu"
-        :autofocus="true"
-      />
+      <form @submit.prevent="onSubmit">
+        <TInput
+          v-model="form.email"
+          name="email"
+          label="Email"
+          icon="i-heroicons-envelope"
+          placeholder="Masukkan emailmu"
+          :autofocus="true"
+        />
 
-      <TInput
-        v-model="form.password"
-        name="password"
-        label="Kata Sandi"
-        icon="i-heroicons-lock-closed"
-        placeholder="Passwordnya apa?"
-        trailing-icon="i-heroicons-eye"
-        :ui="{ icon: { trailing: { pointer: '' } } }"
-        :type="type"
-      >
-        <template #trailing>
-          <UButton
-            color="white"
-            variant="link"
-            :padded="false"
-            :icon="iconVisibility"
-            @click="onVisibility"
-          />
-        </template>
-      </TInput>
+        <TInput
+          v-model="form.password"
+          name="password"
+          label="Kata Sandi"
+          icon="i-heroicons-lock-closed"
+          placeholder="Passwordnya apa?"
+          trailing-icon="i-heroicons-eye"
+          :ui="{ icon: { trailing: { pointer: '' } } }"
+          :type="type"
+        >
+          <template #trailing>
+            <UButton
+              color="white"
+              variant="link"
+              :padded="false"
+              :icon="iconVisibility"
+              @click="onVisibility"
+            />
+          </template>
+        </TInput>
 
-      <UButton
-        type="submit"
-        variant="solid"
-        block
-        class="mt-8"
-        @click="onSubmit"
-      >
-        Mulai Sekarang
-      </UButton>
-
-      <!-- </form> -->
+        <UButton
+          type="submit"
+          variant="solid"
+          block
+          class="mt-8"
+          :loading="isLoading"
+        >
+          Mulai Sekarang
+        </UButton>
+      </form>
     </div>
   </div>
 </template>
