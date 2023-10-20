@@ -32,16 +32,19 @@ const { handleSubmit } = useForm({
 // Handle login api
 const { signin } = useAuth()
 const isLoading = ref(false)
+const toast = useToast()
 
 const onSubmit = handleSubmit(async () => {
   isLoading.value = true
 
-  const { data } = await signin(form.value)
+  const { data, error } = await signin(form.value)
 
   isLoading.value = false
 
   if (data.value !== null)
     window.location.replace('/')
+  else
+    toast.add({ title: error.value?.data.message ?? 'Error connection' })
 })
 </script>
 
